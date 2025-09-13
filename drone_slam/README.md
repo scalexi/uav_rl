@@ -2,7 +2,7 @@
 
 A ROS2 package for running Lidar-based SLAM (Simultaneous Localization and Mapping) on a PX4 drone simulated in Gazebo. This project bridges PX4's NED (North-East-Down) coordinate frame to ROS2's ENU (East-North-Up) frame, handles odometry conversion, and integrates SLAM Toolbox for mapping using Lidar data.
 
-![Demonstration of Drone Altitude Control](https://github.com/eOvic/PX4-ROS2-SLAM-Control/blob/main/drone_slam/media/SLAM.gif)
+![Demonstration of Drone Altitude Control](https://github.com/scalexi/uav_rl/blob/main/drone_slam/media/SLAM.gif)
 
 ### Important:
 Copy the content of the world folder inside: PX4-Autopilot/Tools/simulation/gz/worlds
@@ -91,7 +91,7 @@ mkdir -p ~/ws_ros2/src/
 cd ~/ws_ros2/src/
 git clone https://github.com/PX4/px4_msgs.git
 git clone https://github.com/PX4/px4_ros_com.git
-git clone https://github.com/eOvic/ROS2-2DLidar-Gazebo-SLAM
+git clone https://github.com/eOvic/PX4-ROS2-SLAM-Control.git
 cd ..
 source /opt/ros/jazzy/setup.bash
 colcon build
