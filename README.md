@@ -84,13 +84,14 @@ Also check:
 ros2 pkg list | grep px4
 ```
 
-
+```bash
 PX4-ROS2-SLAM-Control/
  ├── drone_slam/            # SLAM with Lidar 2D, TD3 control and keyboard control 
  ├── drone_slam_cam/        # SLAM with point cloud and RGBD
  ├── px4_rl_project/         # Reinfocement learning Control for drone hovering
  ├── yolo_ros/                  # Commands for yolo_ros that you will need
  └── README.md
+```
 ## Known Issues
 
 - Setting fixed frame to `map` requires SLAM to be active.
