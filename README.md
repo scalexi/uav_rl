@@ -1,6 +1,6 @@
 # Drone SLAM + YOLO integration 
 
-![Demonstration of Drone Altitude Control](https://github.com/eOvic/PX4-ROS2-SLAM-Control/blob/main/drone_slam/media/ROS.png)
+![Demonstration of Drone Altitude Control](https://github.com/scalex/uav_rl/blob/main/drone_slam/media/ROS.png)
 
 This repo contains files that every robotics UAV engineer would need :
 
