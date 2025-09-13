@@ -2,7 +2,7 @@
 
 ROS2 package for 3D SLAM on UAVs using PX4 SITL, Gazebo, and RTAB-Map with a depth camera. This project integrates a depth camera on a drone model (e.g., x500_depth_0 in Gazebo) for real-time 3D mapping and localization. It includes odometry conversion from PX4's NED/FRD frame to ROS's ENU/FLU frame, ROS-Gazebo bridges, depth image processing, and RTAB-Map for SLAM.
 
-![Demonstration of Drone Altitude Control](https://github.com/eOvic/PX4-ROS2-SLAM-Control/blob/main/drone_slam_cam/media/obstacles.png)
+![Demonstration of Drone Altitude Control](https://github.com/scalexi/uav_rl/blob/main/drone_slam_cam/media/obstacles.png)
 
 Key components:
 - **Odometry Conversion**: Transforms PX4 vehicle odometry to ROS-compatible format.
@@ -70,7 +70,7 @@ mkdir -p ~/ws_ros2/src
 cd ~/ws_ros2/src
 git clone https://github.com/PX4/px4_msgs.git
 git clone https://github.com/PX4/px4_ros_com.git
-git clone https://github.com/eOvic/ROS2-Gazebo-RGBD-3D-SLAM.git  
+git clone https://github.com/eOvic/PX4-ROS2-SLAM-Control.git  
 ```
 
 ### 5. Install Dependencies
