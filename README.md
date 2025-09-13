@@ -2,10 +2,13 @@
 
 ![Demonstration of Drone Altitude Control](https://github.com/eOvic/PX4-ROS2-SLAM-Control/blob/main/drone_slam/media/ROS.png)
 
-
 This repo contains files that every robotics UAV engineer would need :
 
-## The package includes:
+This repository integrates **PX4**, **ROS 2 Jazzy**, and **Gazebo Harmonic** for drone navigation and control using **SLAM**.  
+It provides launch files, configuration, and example workflows to visualize LiDAR scans, build maps, and control a drone in simulation.
+
+## Features:
+
 - drone_slam: start the simulation, bridges, SLAM node, and visualization in RViz2 using 2D lidar .
 - drone_slam_cam: Uses a RGBD camera mounted on the drone for SLAM and point cloud extraction.
 - px4_rl_project: this folder contains a DQN approach for drone hovering and altitude maintenance
@@ -26,7 +29,6 @@ sudo apt install python3-colcon-common-extensions git
 ```
 
 ---
-
 ### 2. Create a workspace
 
 ```bash
@@ -35,7 +37,6 @@ cd ~/px4_ros2_ws/src
 ```
 
 ---
-
 ### 3. Clone the repos
 
 ```bash
@@ -45,8 +46,6 @@ git clone https://github.com/PX4/px4_msgs.git
 # px4_ros_com contains the microRTPS bridge & ROS2 interfaces
 git clone https://github.com/PX4/px4_ros_com.git
 ```
-
-
 ### 4. Build the workspace
 
 From the workspace root:
@@ -57,7 +56,6 @@ colcon build
 ```
 
 ---
-
 ### 5. Source the workspace
 
 ```bash
@@ -71,7 +69,6 @@ echo "source ~/px4_ros2_ws/install/setup.bash" >> ~/.bashrc
 ```
 
 ---
-
 ### 6. Verify installation
 
 Check if the PX4 messages are available:
@@ -88,7 +85,17 @@ ros2 pkg list | grep px4
 ```
 
 
+PX4-ROS2-SLAM-Control/
+ ├── drone_slam/            # SLAM with Lidar 2D, TD3 control and keyboard control 
+ ├── drone_slam_cam/        # SLAM with point cloud and RGBD
+ ├── px4_rl_project/         # Reinfocement learning Control for drone hovering
+ ├── yolo_ros/                  # Commands for yolo_ros that you will need
+ └── README.md
+## Known Issues
 
+- Setting fixed frame to `map` requires SLAM to be active.
+    
+- `odom` frame may appear rotated vs `base_link`.
 ## Contributions 
-If you found these projects interesting don't forget that star !! 
+⭐⭐ If you found these projects interesting don't forget that star ⭐⭐ !! 
 

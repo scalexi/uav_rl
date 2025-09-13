@@ -14,7 +14,7 @@ The package includes:
 - Supporting setup files for building the package.
 - Configuration files (e.g., `slam_params.yaml`) for SLAM Toolbox.
 - World files (e.g., SDF models for Gazebo simulations with walls and a drone equipped with a 2D Lidar).
-- A TD3 Algorithm to control the drone
+- A TD3 Algorithm to control the drone.
 
 **Note:** This project uses a Python-based odometry converter by default (via the launch file), but a C++ version (`odom_converter.cpp`) is also provided for reference or alternative use.
 
@@ -93,7 +93,7 @@ git clone https://github.com/PX4/px4_msgs.git
 git clone https://github.com/PX4/px4_ros_com.git
 git clone https://github.com/eOvic/ROS2-2DLidar-Gazebo-SLAM
 cd ..
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 colcon build
 source install/setup.bash
 ```
@@ -111,7 +111,7 @@ pip install -r requirements.txt
 ### Additional Configs
 - Put below lines in your bashrc:
 ```commandline
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 export GZ_SIM_RESOURCE_PATH=~/.gz/models
 ```
 
@@ -132,7 +132,7 @@ First, launch the PX4 SITL simulation. This command will start the PX4 flight co
 cd ~/PX4-Autopilot/
 
 # You must choose a world that has a ground plane.
-PX4_GZ_WORLD=walls make px4_sitl gz_x500_depth
+PX4_GZ_WORLD=walls make px4_sitl gz_x500_lidar_2d
 ```
 
 Wait for the simulation to load completely and for the PX4 terminal to be ready for takeoff.

@@ -11,6 +11,14 @@ Key components:
 - **Visualization**: RViz configuration for 3D mapping.
 - **Simulation**: Tested with PX4 SITL and Gazebo Harmonic.
 
+This will:
+- Bridge Gazebo topics to ROS (e.g., images, depth, IMU, clock).
+- Convert PX4 odometry to ROS `/odom`.
+- Publish static TF for camera link.
+- Run depth registration.
+- Start RTAB-Map for 3D SLAM.
+- Launch RViz for visualization.
+
 ## Prerequisites
 
 - **Operating System**: Ubuntu 24.04 LTS (recommended for ROS2 Jazzy compatibility).
@@ -99,13 +107,13 @@ Start the simulation (adjust model/world as needed):
 cd PX4-Autopilot
 make px4_sitl gz_x500_depth  # Or your custom world with walls/drone model
 ```
-
 ### Micro DDS
 To ensure the connection between Gazebo, ROS and PX4 we use MicroXRCEAgent 
 Open another Terminal and write this command : 
 ```
  MicroXRCEAgent udp4 -p 8888 
 ``` 
+
 IMPORTANT NOTE : You must run QGroundControl in the backgroud :
 https://docs.qgroundcontrol.com/master/en/qgc-user-guide/getting_started/download_and_install.html
 
@@ -115,13 +123,6 @@ In a new terminal:
 source ~/ws_ros2/install/setup.bash
 ros2 launch drone_slam_cam slam_3d.launch.py
 ```
-This will:
-- Bridge Gazebo topics to ROS (e.g., images, depth, IMU, clock).
-- Convert PX4 odometry to ROS `/odom`.
-- Publish static TF for camera link.
-- Run depth registration.
-- Start RTAB-Map for 3D SLAM.
-- Launch RViz for visualization.
 
 Fly the drone in QGroundControl or via PX4 commands to generate maps.
 ### Run the Control Via keyboard
@@ -136,6 +137,8 @@ source ~/ws_ros2/install/setup.bash
 
 # Run the training script
 python3 ~/ws_ros2/src/drone_slam/nodes/keyboard-mavsdk-test.py
+```
+
 ## Troubleshooting
 - **No Data in RViz**: Ensure PX4 SITL is running and topics are bridged correctly (check with `ros2 topic list`).
 - **Frame Mismatches**: Verify NED-to-ENU transformations in `odom_converter.py`.
