@@ -2,6 +2,13 @@ If you want to bridge the camera topic of the drones and apply yolo obstacle det
 
 ## Commands
 ```bash
+git clone https://github.com/mgonzs13/yolo_ros.git
+pip3 install -r yolo_ros/requirements.txt
+cd ~/ros2_ws
+rosdep install --from-paths src --ignore-src -r -y
+colcon build
+```
+```bash
 
 ros2 run ros_gz_image image_bridge /camera/rgb/image_raw /camera/rgb/camera_info /camera/depth/image_raw:=/depth_image /camera/depth/camera_info
 ```
