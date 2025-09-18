@@ -1,6 +1,6 @@
 # Drone SLAM + YOLO integration 
 
-![Demonstration of Drone Altitude Control](https://github.com/scalexi/uav_rl/blob/main/drone_slam/media/ROS.png)
+![Demonstration of Drone Altitude Control](https://github.com/scalexi/uav_rl/blob/main/drone_2d_3d_slam/media/ROS.png)
 
 This repo contains files that every robotics UAV engineer would need :
 
