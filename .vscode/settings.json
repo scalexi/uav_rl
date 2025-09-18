@@ -1,0 +1,13 @@
+{
+    "ROS2.distro": "jazzy",
+    "python.autoComplete.extraPaths": [
+        "/home/khaled/ros2_ws/install/yahboomcar_ctrl/lib/python3.12/site-packages",
+        "/home/khaled/ros2_ws/install/yahboomcar_bringup/lib/python3.12/site-packages",
+        "/home/khaled/ros2_ws/install/ros_gz_sim/lib/python3.12/site-packages",
+        "/home/khaled/ros2_ws/install/box_detacher_pkg/lib/python3.12/site-packages",
+        "/home/khaled/ros2_ws/install/ros_gz_bridge/lib/python3.12/site-packages",
+        "/home/khaled/ros2_ws/install/ros_gz_interfaces/lib/python3.12/site-packages",
+        "/home/khaled/ros2_ws/install/champ_msgs/lib/python3.12/site-packages",
+        "/opt/ros/jazzy/lib/python3.12/site-packages"
+    ]
+}
