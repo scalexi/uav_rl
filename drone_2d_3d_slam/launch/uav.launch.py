@@ -42,7 +42,7 @@ def generate_launch_description():
     gz_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([
-                FindPackageShare('drone_slam'),
+                FindPackageShare('drone_2d_3d_slam'),
                 'launch',
                 'gz_sim.launch.py'
             ])
@@ -61,13 +61,13 @@ def generate_launch_description():
     )
 
     # MAVROS
-    package_share_directory = get_package_share_directory('drone_slam')
+    package_share_directory = get_package_share_directory('drone_2d_3d_slam')
     plugins_file_path = os.path.join(package_share_directory, 'config', 'uav_px4_pluginlists.yaml')
     config_file_path = os.path.join(package_share_directory, 'config', 'uav_px4_config.yaml')
     mavros_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([
-                FindPackageShare('drone_slam'),
+                FindPackageShare('drone_2d_3d_slam'),
                 'launch',
                 'mavros.launch.py'
             ])
