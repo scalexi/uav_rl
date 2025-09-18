@@ -2,7 +2,7 @@ import os
 from glob import glob
 from setuptools import setup, find_packages
 
-package_name = 'px4_rl_project'
+package_name = 'rl_px4'
 
 setup(
     name=package_name,
@@ -22,7 +22,7 @@ setup(
     entry_points={
         'console_scripts': [
             # This creates an executable named 'train_agent' from your script
-            'train_agent = px4_rl_project.train_agent:main',
+            'train_agent = rl_px4.train_agent:main',
         ],
     },
 )
