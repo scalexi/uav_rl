@@ -1,0 +1,51 @@
+rtabmap:
+  ros__parameters:
+    frame_id: "uav/base_link"
+    odom_frame_id: "uav/odom"
+    map_frame_id: "map"
+    subscribe_depth: true
+    subscribe_rgb: true
+    subscribe_scan_cloud: true
+    subscribe_imu: true
+    use_odometry: true
+
+    RGBD/Enabled: "true"
+    RGBD/NeighborLinkRefining: "true"
+    RGBD/ProximityBySpace: "true"
+    RGBD/ProximityMaxGraphDepth: "0"
+    RGBD/ProximityPathMaxNeighbors: "10"
+    RGBD/AngularUpdate: "0.01"  # Lower for denser mapping
+    RGBD/LinearUpdate: "0.01"   # Lower for denser mapping
+    RGBD/CreateOccupancyGrid: "true"  # Generate 2D grid from 3D
+    RGBD/OptimizeMaxError: "1.0"  # Reject bad loop closures
+
+    Reg/Strategy: "1"  # ICP
+    Icp/VoxelSize: "0.05"
+    Icp/PointToPlane: "true"
+    Icp/Iterations: "30"
+    Icp/CorrespondenceRatio: "0.01"  # Slightly higher for better convergence
+    Icp/PointToPlaneRadius: "0"  # Use all points
+    Icp/Epsilon: "0.001"  # Convergence threshold
+
+    Vis/MinInliers: "10"  # Lower for easier feature matching in sim
+    Vis/InlierDistance: "0.05"
+
+    approx_sync: true
+    approx_sync_max_interval: "0.2"
+
+    Queue/Size: "200"  # Topic queue size
+    qos_image: 2
+    qos_camera_info: 2
+    qos_scan: 2
+    qos_imu: 1
+
+    Cloud/Voxel: "0.05"
+    Cloud/NoiseRadius: "0.05"  # Tighter noise filter for sim
+    Cloud/NoiseMinNeighbors: "5"
+    Cloud/RangeMin: "0.2"
+    Cloud/RangeMax: "20.0"  # Extended for larger worlds
+    RGBD/PlanarSegmentation: "false"
+
+    Grid/Map: "true"
+    Grid/3D: "true"  # Ensure 3D map
+    publish_tf: true
