@@ -1,7 +1,7 @@
 # File: ~/ws_ros2/src/px4_rl_project/px4_rl_project/train_agent.py
 
 import rclpy
-from rl_px4.environment.px4_nav_env import DroneEnv
+from px4_rl_project.environment.px4_nav_env import DroneEnv
 from stable_baselines3 import DQN
 from stable_baselines3.common.callbacks import CheckpointCallback
 from stable_baselines3.common.vec_env import DummyVecEnv

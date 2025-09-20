@@ -27,7 +27,7 @@ def generate_launch_description():
 
         # 4) Odom converter
         ExecuteProcess(
-            cmd=['python3', os.path.expanduser('~/ros2_ws/src/uav_rl/drone_2d_3d_slam/drone_2d_3d_slam/odom_converter.py')],
+            cmd=['python3', os.path.expanduser('~/ws_ros2/src/drone_slam/drone_slam/odom_converter.py')],
             output='screen'
         ),
 
@@ -44,7 +44,7 @@ def generate_launch_description():
             package='slam_toolbox',
             executable='async_slam_toolbox_node',
             name='slam_toolbox',
-            parameters=[os.path.expanduser('~/ros2_ws/src/uav_rl/drone_2d_3d_slam/config/slam_params.yaml')],
+            parameters=[os.path.expanduser('~/ws_ros2/src/drone_slam/config/slam_params.yaml')],
             output='screen'
         ),
 
