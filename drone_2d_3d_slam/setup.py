@@ -29,7 +29,6 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'odom_converter = drone_2d_3d_slam.odom_converter:main',
         ],
     },
 )
