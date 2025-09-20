@@ -1,0 +1,5 @@
+# Editor / IDE
+.vscode/
+
+# optionally ignore vscode db files
+*.vc.db

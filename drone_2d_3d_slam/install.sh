@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# --- Fix for COLCON_TRACE unbound variable ---
+: "${COLCON_TRACE:=}"   # ensures COLCON_TRACE is defined (empty if not set)
+: "${AMENT_TRACE_SETUP_FILES:=}"
+: "${AMENT_PYTHON_EXECUTABLE:=}"
+: "${COLCON_CURRENT_PREFIX:=}"
+: "${COLCON_PREFIX_PATH:=}"
+: "${COLCON_PYTHON_EXECUTABLE:=}"
+: "${PKG_CONFIG_PATH:=}"
+
 ### ─────────────────────────────────────────────────────────────────────────────
 # PX4 + ROS 2 + MAVROS + SLAM Setup & Model Copy
 # This script will:
@@ -17,11 +26,18 @@ set -euo pipefail
 ROS_WS="${HOME}/ros2_ws"
 PX4_DIR="${HOME}/PX4-Autopilot"
 UAV_MODELS_SRC="${ROS_WS}/src/uav_rl/drone_2d_3d_slam/models"
+UAV_WORLD_SRC="${ROS_WS}/src/uav_rl/drone_2d_3d_slam/worlds"
 PX4_GZ_MODELS_DST="${PX4_DIR}/Tools/simulation/gz/models"
+PX4_GZ_WORLD_DST="${PX4_DIR}/Tools/simulation/gz/worlds"
 
 # If you keep your custom airframe init script in your repo, set it here:
-AIRFRAME_FILE_SRC="${ROS_WS}/src/uav_rl/drone_2d_3d_slam/airframes/4020_gz_x500_lidar_rgbd"
+AIRFRAME_FILE_SRC="${ROS_WS}/src/uav_rl/drone_2d_3d_slam/models/4020_gz_x500_lidar_rgbd"
+CMAKE_FILE_SRC="${ROS_WS}/src/uav_rl/drone_2d_3d_slam/models/CMakeLists.txt"
+#---------------# Destination path inside PX4 repo:---
 AIRFRAME_FILE_DST="${PX4_DIR}/ROMFS/px4fmu_common/init.d-posix/airframes"
+CMAKE_FILE_DST="${PX4_DIR}/ROMFS/px4fmu_common/init.d-posix/airframes"
+
+
 
 # ===== helpers =====
 require_cmd() {
@@ -88,7 +104,7 @@ rosdep update
 rosdep install --from-paths src --ignore-src -y
 
 echo "=== 7) Install GeographicLib datasets (for MAVROS) ==="
-bash ./src/mavros/mavros/scripts/install_geographiclib_datasets.sh
+sudo ./src/mavros/mavros/scripts/install_geographiclib_datasets.sh
 
 echo "=== 8) Build ROS 2 workspace ==="
 colcon build
@@ -114,6 +130,20 @@ fi
 
 echo "=== 12) Copy custom airframe init script (4020_gz_x500_lidar_rgbd) ==="
 copy_if_exists "$AIRFRAME_FILE_SRC" "$AIRFRAME_FILE_DST"
+copy_if_exists "$CMAKE_FILE_SRC" "$CMAKE_FILE_DST"
+
+echo "=== 13) Rebuild PX4 SITL with updated ROMFS ==="
+cd "$PX4_DIR"
+make px4_sitl
+
+echo "=== 14) Copy custom worlds into PX4 Gazebo worlds dir ==="
+mkdir -p "$PX4_GZ_WORLD_DST"
+if [[ -d "$UAV_WORLD_SRC" ]]; then
+  cp -r "${UAV_WORLD_SRC}/." "$PX4_GZ_WORLD_DST/"
+  echo "✓ Worlds copied: ${UAV_WORLD_SRC} → ${PX4_GZ_WORLD_DST}"
+else
+  echo "⚠ Worlds source directory not found: ${UAV_WORLD_SRC}"
+fi
 
 echo
 echo "✅ ALL DONE."
@@ -121,4 +151,4 @@ echo "• PX4 SITL (v1.15.2) built at: ${PX4_DIR}"
 echo "• ROS 2 workspace built at:    ${ROS_WS}"
 echo "• Models installed at:         ${PX4_GZ_MODELS_DST}"
 echo "• Airframe file (if provided): ${AIRFRAME_FILE_DST}"
-echo "📝 Reminder: Don’t forget to update your CMakeLists.txt where necessary."
+echo "📝 Reminder: Don’t forget if you changed PX4 Version you need to change the CMakeLists.txt."
