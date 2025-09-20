@@ -1,5 +1,3 @@
-# File: ~/ws_ros2/src/px4_rl_project/px4_rl_project/environment/px4_nav_env.py
-
 import rclpy, numpy as np, gymnasium as gym, time
 from gymnasium import spaces
 from rclpy.node import Node
